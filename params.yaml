@@ -1,0 +1,33 @@
+base:
+  project: ecommerce_revenue_forecasting_project
+  random_state: 42
+  target_col: TARGET
+
+data_source:
+  s3_source: dataset/data.csv
+
+load_data:
+  raw_dataset_csv: data/raw/data.csv
+
+preprocess_data:
+  preprocessed_dataset_csv: data/preprocessed/preprocessed_ecommercedata.csv
+
+split_data:
+  train_path: data/preprocessed/train_ecommercedata.csv
+  test_path: data/preprocessed/test_ecommercedata.csv
+  test_size: 0.2
+
+estimators:
+  ElasticNet:
+    params:
+      alpha: 0.9
+      l1_ratio: 0.4
+      # alpha: 0.88
+      # l1_ratio: 0.89
+model_dir: saved_models
+
+reports:
+  params: report/params.json
+  scores: report/scores.json
+
+webapp_model_dir: prediction_service/model/model.joblib
